@@ -1,0 +1,63 @@
+#
+#
+###############################################################
+- alias: Sofa Button Single Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdbc5
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lamp
+      data:
+        # https://home-assistant.io/components/light/
+        kelvin: 3000
+        brightness_pct: 5 #0-100
+#
+- alias: Sofa Button Double Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdbc5
+      click_type: double
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lamp, light.front_door
+      data:
+        # https://home-assistant.io/components/light/
+        kelvin: 3000
+        brightness_pct: 100 #0-100
+#
+- alias: Sofa Button Long Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdbc5
+      click_type: long_click_press
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.living_room_lamp, light.kitchen1, light.front_door
+#
+###############################################################

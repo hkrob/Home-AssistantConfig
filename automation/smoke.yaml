@@ -1,0 +1,66 @@
+##
+#
+- alias: 'smoke.detected'
+  hide_entity: true
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.smoke_sensor_158d0001d94b5d
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.Telegram
+      data:
+        message: 'Smoke Detected .. sending pictures soon'
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamKitchen1
+        filename: !secret snapshotYiCamKitchen1
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamKitchen2
+        filename: !secret snapshotYiCamKitchen2
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamWater
+        filename: !secret snapshotYiCamWater
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamLivingRoomHD
+        filename: !secret snapshotYiCamLivingRoomHD
+    - delay: '00:00:20'
+    - service: notify.Telegram
+      data:
+        title: "Kitchen"
+        message: "-"
+        data:
+          photo:
+            - file: !secret snapshotYiCamKitchen1
+              caption: Kitchen Motion
+    - service: notify.Telegram
+      data:
+        title: "Kitchen"
+        message: "-"
+        data:
+          photo:
+            - file: !secret snapshotYiCamKitchen2
+              caption: Kitchen Motion
+    - service: notify.Telegram
+      data:
+        title: "Water"
+        message: "-"
+        data:
+          photo:
+            - file: !secret snapshotYiCamWater
+              caption: Water
+    - service: notify.Telegram
+      data:
+        title: "Living Room HD"
+        message: "-"
+        data:
+          photo:
+            - file: !secret snapshotYiCamLivingRoomHD
+              caption: Living Room HD
+#
+#
+# EOF

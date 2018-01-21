@@ -1,0 +1,16 @@
+*
+!*.yaml
+!*.yml
+!scenes
+!automation
+!custom_components
+!customizations
+!input_select
+!input_slider
+!scene
+!scripts
+!captures
+!*.sh
+!.gitignore
+secrets.yaml
+known_devices.yaml

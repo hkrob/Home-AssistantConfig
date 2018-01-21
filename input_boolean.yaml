@@ -1,0 +1,24 @@
+##############################################################
+## Input Boolean  ##
+##############################################################
+
+#  enable_holiday:
+#    name: Holiday Mode
+#    icon: mdi:airplane-takeoff # https://materialdesignicons.com/
+#
+  enable_motion:
+    name: Motion Detection
+    icon: mdi:walk # https://materialdesignicons.com/
+    initial: on
+#
+  test:
+    name: Cams Busy
+    icon: mdi:close-box # https://materialdesignicons.com/
+    initial: on
+#
+  automation:
+    name: Automation
+    icon: mdi:close-box # https://materialdesignicons.com/
+    initial: on
+#
+#

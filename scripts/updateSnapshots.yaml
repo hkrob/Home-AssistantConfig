@@ -1,0 +1,31 @@
+alias: Update Snapshots
+sequence:
+- event: LOGBOOK_ENTRY
+  event_data:
+    name: EVENT
+    message: "Updating Snapshots"
+#- service: notify.Telegram
+#  data_template:
+#    message: "Updating Snapshots"
+
+- service: shell_command.takesnapshots
+  data:
+    ip: !secret ipYiCamKitchen1
+    filename: !secret snapshotYiCamKitchen1
+- service: shell_command.takesnapshots
+  data:
+    ip: !secret ipYiCamKitchen2
+    filename: !secret snapshotYiCamKitchen2
+- service: shell_command.takesnapshots
+  data:
+    ip: !secret ipYiCamWater
+    filename: !secret snapshotYiCamWater
+- service: shell_command.takesnapshots
+  data:
+    ip: !secret ipYiCamLivingRoomHD
+    filename: !secret snapshotYiCamLivingRoomHD
+- service: shell_command.takesnapshots
+  data:
+    ip: !secret ipYiCamBedroom
+    filename: !secret snapshotYiCamBedroom
+#

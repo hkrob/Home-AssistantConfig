@@ -1,0 +1,29 @@
+# https://github.com/syssi/xiaomi_airpurifier
+# mirobo --ip 192.168.1.61 --token d4c02da2de6d92158e9be9a4413316df raw_command set_mode '["auto"]'
+# mirobo --ip 192.168.1.61 --token d4c02da2de6d92158e9be9a4413316df raw_command set_mode '["favorite"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["auto"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["silent"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["favorite"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["medium"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["high"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["strong"]'
+# mirobo --ip 192.168.x.x --token your-token raw_command set_mode '["idle"]'
+#
+#https://python-miio.readthedocs.io/en/latest/discovery.html#installation
+#
+  - platform: xiaomi_miio
+    name: Air Purifier
+    host: 192.168.1.61
+    token: d4c02da2de6d92158e9be9a4413316df
+#
+#
+#
+# { "entity_id": "fan.living_room_air_purifier", "speed": "Auto" }
+# { "entity_id": "fan.living_room_air_purifier", "speed": "Silent" }
+# { "entity_id": "fan.living_room_air_purifier", "speed": "Favorite" }
+# { "entity_id": "fan.living_room_air_purifier", "speed": "Idle" 
+#
+# https://community.home-assistant.io/t/show-attributes-of-fritzbox-callmonitor-sensor/10047/2
+# Bedroom: {{ states.sensor.temperature_158d0001826d95.state }} deg C, {{ states.sensor.humidity_158d0001826d95.state }} % Humidity, {{ states.sensor.humidity_158d0001826d95.attributes.battery_level }} % battery
+#
+# EOF

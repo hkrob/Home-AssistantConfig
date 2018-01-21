@@ -1,0 +1,27 @@
+#
+#
+#
+#  - platform: ffmpeg
+#    name: stream kitchen2
+#    input: -rtsp_transport tcp -i rtsp://192.168.1.50:554/ch0.h264
+#
+#  - platform: ffmpeg
+#    name: stream kitchen1
+#    input: -rtsp_transport tcp -i rtsp://192.168.1.51:554/ch0.h264
+#
+  - platform: local_file
+    file_path: !secret snapshotYiCamKitchen1
+    name: static Kitchen1
+#
+  - platform: local_file
+    file_path: !secret snapshotYiCamKitchen2
+    name: static Kitchen2
+#
+  - platform: local_file
+    file_path: !secret snapshotYiCamWater
+    name: static Water
+#
+  - platform: local_file
+    file_path: !secret snapshotYiCamLivingRoomHD
+    name: Living Room HD
+#

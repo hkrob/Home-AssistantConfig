@@ -1,0 +1,141 @@
+#
+#
+###############################################################
+#
+- alias: Front Door Closed
+  trigger:
+     platform: state
+     entity_id: binary_sensor.door_window_sensor_158d0001193d64
+     from: 'on'
+     to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: notify.Telegram
+      data_template:
+        title: "Front Door"
+        message: "Front Door has been closed .. sending pictures in 30s"
+    - service: script.update_snapshots
+    - delay: '00:00:30'
+    - service: script.send_snapshots
+#
+#
+- alias: Front Door Opened after midnght until sunrise
+  trigger:
+     platform: state
+     entity_id: binary_sensor.door_window_sensor_158d0001193d64
+     from: 'off'
+     to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+  action:
+    - service: notify.Telegram
+      data_template:
+        message: "Front Door Opened"
+    - service: light.turn_on
+      entity_id: light.front_door, light.living_room_lamp, light.kitchen1
+      data:
+        brightness_pct: 5 #0-100
+        kelvin: 2500
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: '28:6C:07:FA:30:E3'
+        # 8 dog barking
+        # 10 ding dong
+        ringtone_id: 10
+        ringtone_vol: 2
+    - service: notify.Telegram
+      data_template:
+        message: "sending pictures in 30s"
+    - service: script.update_snapshots
+    - delay: '00:00:30'
+    - service: script.send_snapshots
+#
+- alias: Front Door Opened after sunrise until sunset
+  trigger:
+     platform: state
+     entity_id: binary_sensor.door_window_sensor_158d0001193d64
+     from: 'off'
+     to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunrise
+      - condition: sun
+        before: sunset
+  action:
+    - service: notify.Telegram
+      data_template:
+        message: "Front Door Opened"
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: '28:6C:07:FA:30:E3'
+        # 8 dog barking
+        # 10 ding dong
+        ringtone_id: 10
+        ringtone_vol: 10
+    - service: notify.Telegram
+      data_template:
+        message: "sending pictures in 30s"
+    - service: script.update_snapshots
+    - delay: '00:00:30'
+    - service: script.send_snapshots
+#
+- alias: Front Door Opened sunset until midnight
+  trigger:
+     platform: state
+     entity_id: binary_sensor.door_window_sensor_158d0001193d64
+     from: 'off'
+     to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunset
+      - condition: time
+        before: '23:59:59'
+  action:
+    - service: notify.Telegram
+      data_template:
+        message: "Front Door Opened"
+    - service: light.turn_on
+      entity_id: group.all_lights
+      data:
+        brightness_pct: 35 #0-100
+        color_name: orange
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: '28:6C:07:FA:30:E3'
+        # 8 dog barking
+        # 10 ding dong
+        ringtone_id: 10
+        ringtone_vol: 7
+    - service: notify.Telegram
+      data_template:
+        message: "sending pictures in 30s"
+    - service: script.update_snapshots
+    - delay: '00:00:30'
+    - service: script.send_snapshots
+#
+#
+#
+# EOF

@@ -1,0 +1,29 @@
+#
+#
+#
+  - platform: command_line
+    name: Air Purifier Humidity
+    command: miio --control 192.168.1.61 --method get_prop --params '["humidity"]'
+    unit_of_measurement: "%"
+    value_template: '{{ value | replace("INFO","") | replace("Attempting to control 192.168.1.61","") | replace("Got result:","") | replace("[","") | replace("]","") | replace(" ","") }}'
+    scan_interval: 120
+
+  - platform: command_line
+    name: Air Purifier PM 2.5
+    command: miio --control 192.168.1.61 --method get_prop --params '["aqi"]'
+    unit_of_measurement: "㎍/m³"
+    value_template: '{{ value | replace("INFO","") | replace("Attempting to control 192.168.1.61","") | replace("Got result:","") | replace("[","") | replace("]","") | replace(" ","") }}'
+    scan_interval: 120
+  - platform: command_line
+    name: Air Purifier Power
+    command: miio --control 192.168.1.61 --method get_prop --params '["power"]'
+    value_template: '{{ value | replace("INFO","") | replace("Attempting to control 192.168.1.61","") | replace("Got result:","") | replace("[","") | replace("]","") | replace(" ","") }}'
+    scan_interval: 120
+  - platform: command_line
+    name: Air Purifier Mode
+    command: miio --control 192.168.1.61 --method get_prop --params '["mode"]'
+    value_template: '{{ value | replace("INFO","") | replace("Attempting to control 192.168.1.61","") | replace("Got result:","") | replace("[","") | replace("]","") | replace(" ","") }}'
+    scan_interval: 120
+#
+#
+# EOF

@@ -1,0 +1,115 @@
+#
+#
+###############################################################
+#
+- alias: Kitchen Button Single Click after midnght until sunrise
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013ecdbf
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+  action:
+    - service: light.turn_on
+      entity_id: light.Kitchen1
+      data:
+        brightness_pct: 25 #0-100
+        kelvin: 2500
+#
+- alias: Kitchen Button Single Click after sunrise until sunset
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013ecdbf
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunrise
+      - condition: sun
+        before: sunset
+  action:
+    - service: light.turn_on
+      entity_id: light.Kitchen1
+      data:
+        brightness_pct: 50 #0-100
+        kelvin: 2500
+#
+- alias: Kitchen Button Single Click sunset until midnight
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013ecdbf
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunset
+      - condition: time
+        before: '23:59:59'
+  action:
+    - service: light.turn_on
+      entity_id: light.Kitchen1
+      data:
+        brightness_pct: 35 #0-100
+        kelvin: 2500
+#
+- alias: Kitchen Button Double Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013ecdbf
+      click_type: double
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.Kitchen1
+      data:
+        brightness_pct: 100 #0-100
+        color_name: white
+#
+- alias: Kitchen Button Long Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013ecdbf
+      click_type: long_click_press
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.Kitchen1
+#
+#
+# EOF

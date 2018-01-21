@@ -1,0 +1,17 @@
+#
+#
+#
+- name: Work
+  latitude: 22.278138
+  longitude: 114.159836
+  radius: 50
+  icon: mdi:city
+
+- name: Home
+  latitude: 22.288333
+  longitude: 114.141916
+  radius: 25
+  icon: mdi:home-outline
+#
+#
+# EOF

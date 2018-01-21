@@ -1,0 +1,8 @@
+#
+#
+#
+  restart_ha: sudo systemctl restart home-assistant@pi &
+  takesnapshots: bash /home/pi/.homeassistant/scripts/snapshots.sh {{ip}} {{filename}}
+#
+#
+# EOF

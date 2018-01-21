@@ -1,0 +1,16 @@
+  - alias: Fan Control
+    trigger:
+      platform: state
+      entity_id: input_slider.purifier_speed
+    action:
+      - service: airpurifier.set_favorite_level
+        data_template:
+          # entity_id: fan.living_room_air_purifier
+          level: '{{ states.input_slider.purifier_speed.state | int }}'
+      - service: notify.Telegram
+        data_template:
+          message: "Fan speed set to {{ states.input_slider.purifier_speed.state | int }}"
+
+
+
+#

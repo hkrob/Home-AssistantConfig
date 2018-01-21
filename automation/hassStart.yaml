@@ -1,0 +1,13 @@
+- alias: 'HA_Start'
+  trigger:
+    platform: homeassistant
+    # Event can also be 'shutdown'
+    event: start
+  action:
+    #- delay: '00:00:10'
+    - service: notify.Telegram
+      data:
+        message: "HASS has just started
+
+        say /hi to continue"
+    

@@ -1,0 +1,120 @@
+#
+#
+###############################################################
+#
+- alias: Front Door Button Single Click after midnght until sunrise
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001256414
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+  action:
+    - service: light.turn_on
+      entity_id: light.front_door, light.living_room_lamp, light.kitchen1
+      data:
+        brightness_pct: 5 #0-100
+        kelvin: 2500
+#
+- alias: Front Door Button Single Click after sunrise until sunset
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001256414
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunrise
+      - condition: sun
+        before: sunset
+  action:
+    - service: light.turn_on
+      entity_id: light.front_door, light.living_room_lamp, light.kitchen1
+      data:
+        brightness_pct: 50 #0-100
+        kelvin: 2500
+#
+- alias: Front Door Button Single Click sunset until midnight
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001256414
+      click_type: single
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunset
+      - condition: time
+        before: '23:59:59'
+  action:
+    - service: light.turn_on
+      entity_id: light.Bedroom
+      data:
+        brightness_pct: 15 #0-100
+        kelvin: 2500
+    - service: light.turn_on
+      entity_id: light.front_door, light.living_room_lamp, light.kitchen1
+      data:
+        brightness_pct: 15 #0-100
+        color_name: red
+#
+- alias: Front Door Button Double Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001256414
+      click_type: double
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:    
+    - service: light.turn_on
+      entity_id: group.all_lights
+      data:
+        brightness_pct: 100 #0-100
+        color_name: white
+#
+- alias: Front Door Button Long Click 24hr
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001256414
+      click_type: long_click_press
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+#
+#
+# EOF

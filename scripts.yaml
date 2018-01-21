@@ -1,0 +1,9 @@
+##
+#
+restart_ha: !include scripts/restart_ha.yaml
+#sunrise: !include scripts/sunrise.yaml
+#sunset: !include scripts/sunset.yaml
+low_battery: !include scripts/low_battery.yaml
+update_snapshots: !include scripts/updateSnapshots.yaml
+send_snapshots: !include scripts/sendSnapshots.yaml
+#

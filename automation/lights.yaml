@@ -1,0 +1,22 @@
+#
+- alias: Lamp Brightness
+  trigger:
+    platform: state
+    entity_id: input_slider.lamp_bright
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.living_room_lamp
+        brightness: '{{ states.input_slider.lamp_bright.state | int }}'
+#
+- alias: All Lights Brightness
+  trigger:
+    platform: state
+    entity_id: input_slider.alllights_bright
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: group.all_lights
+        brightness: '{{ states.input_slider.alllights_bright.state | int }}'
+#
+#

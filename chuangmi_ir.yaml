@@ -1,0 +1,15 @@
+# https://github.com/homeassistantchina/custom_components/blob/master/doc/chuang_mi_ir_remote.md
+  - platform: chuangmi_ir
+    host: 192.168.1.121
+    name: "livingroomirremote"
+    token: dd4b025f665881a81776605d778039a3
+    switches:
+      reciever:
+        command_on: ''
+        command_off: ''
+      wcfan:
+        name: 'wcfan'
+        command_on: 'Z6VLAAkCAABpAgAAYgYAAKYIAACJEQAAoSMAAKScAABYeQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFAQEBAQEBAQEhISEhISEhIQEBISEBAQEBISEBASEhISFhNXE1AQ=='
+        command_off: 'Z6VHAPEBAACBAgAASQYAAIYIAABqEQAAySMAAECcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFAQEBAQEBAQEhISEhISEhIQEBASEhAQEBISEhAQEhISFhNQE='
+#
+# EOF

@@ -1,0 +1,24 @@
+#Panels
+yamleditor:
+  title: 'YAML Editor'
+  icon: mdi:wrench
+  url: 'http://REDACTED.duckdns.org:3218'
+radarr:
+  title: 'Radarr'
+  icon: mdi:movie
+  url: 'http://REDACTED.duckdns.org:7878'
+sonarr:
+  title: 'Sonarr'
+  icon: mdi:television
+  url: 'http://REDACTED.duckdns.org:8989'
+nzbget:
+  title: 'NZBGet'
+  icon: mdi:download
+  url: 'http://REDACTED.duckdns.org:6789'
+plexpy:
+  title: 'PlexPy'
+  icon: mdi:database
+  url: 'http://REDACTED.duckdns.org:8181'
+trakt:
+  title: 'Trakt'
+  url: 'http://trakt-for-plex.github.io/configuration'

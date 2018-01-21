@@ -1,0 +1,53 @@
+alias: Send Snapshots
+sequence:
+- event: LOGBOOK_ENTRY
+  event_data:
+    name: EVENT
+    message: "Sending Snapshots"
+- service: notify.Telegram
+  data_template:
+    message: "Sending Snapshots"
+- service: notify.Telegram
+  data:
+    title: "Kitchen"
+    message: "-"
+    data:
+      photo:
+        - file: !secret snapshotYiCamKitchen1
+          caption: Kitchen Motion
+- service: notify.Telegram
+  data:
+    title: "Kitchen"
+    message: "-"
+    data:
+      photo:
+        - file: !secret snapshotYiCamKitchen2
+          caption: Kitchen Motion
+- service: notify.Telegram
+  data:
+    title: "Bedroom2"
+    message: "-"
+    data:
+      photo:
+        - file: !secret snapshotYiCamBedroom
+          caption: Bedroom2
+- service: notify.Telegram
+  data:
+    title: "Water"
+    message: "-"
+    data:
+      photo:
+        - file: !secret snapshotYiCamWater
+          caption: Water
+- service: notify.Telegram
+  data:
+    title: "Living Room HD"
+    message: "-"
+    data:
+      photo:
+        - file: !secret snapshotYiCamLivingRoomHD
+          caption: Living Room HD
+
+#
+#
+#

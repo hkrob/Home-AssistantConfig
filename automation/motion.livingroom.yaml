@@ -1,0 +1,107 @@
+#
+#
+# https://community.home-assistant.io/t/sun-event-related-timers/8648
+#
+- alias: Living Room Motion midnight to sunrise
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015a912d
+    from: 'off'
+    to: 'on'
+  condition:
+   condition: and
+   conditions:
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+        before_offset: "-00:20:00"
+  action:
+    - service: light.turn_on
+      entity_id: light.bathroom1
+      data:
+        brightness_pct: 5 #0-100
+        kelvin: 2500
+    - service: light.turn_on
+      entity_id: light.living_room_lamp
+      data:
+        kelvin: 2700
+        brightness_pct: 5 #0-100
+#
+#
+- alias: Living Room No Motion 5 minutes 24hr
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015a912d
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.front_door, light.living_room_lamp
+#
+- alias: Living Room No Motion 5 minutes midnight to sunrise
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015a912d
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+        before_offset: "-00:20:00"
+  action:
+    - service: light.turn_off
+      entity_id: light.front_door, light.living_room_lamp, light.bathroom1, light.bathroom2
+#
+#
+- alias: Living Room No Motion 30 minutes 24hr
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015a912d
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 30
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+#    - service: fan.set_speed
+#      entity_id: group.all_lights
+  #  - service: 
+  #    entity_id: fan.living_room_air_purifier
+#######################################################        

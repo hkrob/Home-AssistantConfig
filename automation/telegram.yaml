@@ -1,0 +1,219 @@
+##
+#
+- alias: 'telegram.start'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/hi'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Choose an option'
+      data:
+        inline_keyboard:
+          - 'Lights:/lights, HolidayMode:/HolidayModeToggle'
+          - 'Snapshots:/snapshots, MotionDetection:/MotionDetectionToggle'
+          - 'updateSnapshots:/UpdateSnapshots'
+          - 'ManualOverride:/ManualOverride'
+          - 'Weather Status:/weatherStatus'
+#
+- alias: 'telegram.lights'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/lights'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Lights - Choose an option'
+      data:
+        inline_keyboard:
+          - 'Lights Status:/lightStatus'
+          - 'Lights Off:/AllLightsOff, Lights On:/AllLightsOn'
+#
+#
+- alias: 'telegram.lightStatus'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/lightStatus'
+  action:
+    - service: notify.Telegram
+      data:
+        title: "Light Status"
+        message: "Living Room Lamp is {{ states.light.living_room_lamp.state }}
+
+        Front Door Light is {{ states.light.front_door.state }}
+
+        Kitchen Light 1 is {{ states.light.kitchen1.state }}
+
+        Bedroom Light is {{ states.light.bedroom.state }}
+        
+        Gateway Light is {{ states.light.gateway_light_286c07fa30e3.state }}
+
+        Bathroom Light 1 Light is {{ states.light.bathroom1.state }}
+
+        Bathroom Light 2 is {{ states.light.bathroom2.state }}"
+#
+#
+- alias: 'telegram.allLightsOn'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/AllLightsOn'
+  action:
+    - service: notify.Telegram
+      data:
+        message: "Lights - Turn them all on"
+    - service: light.turn_on
+      entity_id: group.all_lights
+      data:
+        transition: 1
+    - service: notify.Telegram
+      data:
+        title: "Light Status"
+        message: "Living Room Lamp is {{ states.light.living_room_lamp.state }}
+
+        Front Door Light is {{ states.light.front_door.state }}
+
+        Kitchen Light 1 is {{ states.light.kitchen1.state }}
+
+        Bedroom Light is {{ states.light.bedroom.state }}
+        
+        Gateway Light is {{ states.light.gateway_light_286c07fa30e3.state }}
+
+        Bathroom Light 1 Light is {{ states.light.bathroom1.state }}
+
+        Bathroom Light 2 is {{ states.light.bathroom2.state }}"
+#
+#
+- alias: 'telegram.allLightsOff'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/AllLightsOff'
+  action:
+    - service: notify.Telegram
+      data:
+        message: "Lights - Turn them all off"
+    - service: light.turn_off
+      entity_id: group.all_lights
+      data:
+        transition: 1
+    - service: notify.Telegram
+      data:
+        title: "Light Status"
+        message: "Living Room Lamp is {{ states.light.living_room_lamp.state }}
+
+        Front Door Light is {{ states.light.front_door.state }}
+
+        Kitchen Light 1 is {{ states.light.kitchen1.state }}
+
+        Bedroom Light is {{ states.light.bedroom.state }}
+        
+        Gateway Light is {{ states.light.gateway_light_286c07fa30e3.state }}
+
+        Bathroom Light 1 Light is {{ states.light.bathroom1.state }}
+
+        Bathroom Light 2 is {{ states.light.bathroom2.state }}"
+#
+- alias: 'telegram.motionDetectionToggle'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/MotionDetectionToggle'
+  action:
+    - service: input_boolean.toggle
+      data:
+        entity_id: input_boolean.enable_motion
+    - service: notify.Telegram
+      data:
+        message: "Motion Detection Mode is now {{ states.input_boolean.enable_motion.state }}"
+#
+#
+- alias: 'telegram.ManualOverrideToggle'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/ManualOverride'
+  action:
+    - service: input_boolean.toggle
+      data:
+        entity_id: input_boolean.ManualOverride
+    - service: notify.Telegram
+      data:
+        message: "Manual Override Mode is now {{ states.input_boolean.ManualOverride.state }}"
+#
+- alias: 'telegram.HolidayModeToggle'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/HolidayModeToggle'
+  action:
+    - service: input_boolean.toggle
+      data:
+        entity_id: input_boolean.enable_holiday
+    - service: notify.Telegram
+      data:
+        message: "Holiday Mode is now {{ states.input_boolean.enable_holiday.state }}"
+#
+- alias: 'telegram.updateSnapshots'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/UpdateSnapshots'
+  action:
+    - service: notify.Telegram
+      data_template:
+        message: "Updating Snapshots"
+    - service: script.update_snapshots
+#
+- alias: 'telegram.snapshots'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/snapshots'
+  action:
+    - service: script.send_snapshots
+#
+- alias: 'telegram.WeatherStatus'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: '/weatherStatus'
+  action:
+    - service: notify.Telegram
+      data:
+        title: "Weather Status"
+        message: "
+        Bedroom: {{ states.sensor.temperature_158d0001826d95.state }} deg C, {{ states.sensor.humidity_158d0001826d95.state }} % Humidity, {{ states.sensor.humidity_158d0001826d95.attributes.battery_level }} % battery
+
+        Living Room: {{ states.sensor.temperature_158d0001561c0a.state }} deg C, {{ states.sensor.humidity_158d0001561c0a.state }} % Humidity, {{ states.sensor.humidity_158d0001561c0a.attributes.battery_level }} % battery
+
+        Outside: {{ states.sensor.temperature_158d0001563369.state }} deg C, {{ states.sensor.humidity_158d0001563369.state }} % Humidity, {{ states.sensor.humidity_158d0001563369.attributes.battery_level }} % battery
+        "
+#
+#
+# EOF

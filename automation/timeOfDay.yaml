@@ -1,0 +1,30 @@
+##
+#
+- alias: 'timeOfDay.snapshots'
+  hide_entity: true
+  trigger:
+    platform: time
+    # You can also match on interval. This will match every 15 minutes
+    minutes: '/15'
+    seconds: 00
+  action:
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamKitchen1
+        filename: !secret snapshotYiCamKitchen1
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamKitchen2
+        filename: !secret snapshotYiCamKitchen2
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamWater
+        filename: !secret snapshotYiCamWater
+    - service: shell_command.takesnapshots
+      data:
+        ip: !secret ipYiCamLivingRoomHD
+        filename: !secret snapshotYiCamLivingRoomHD
+
+#
+#
+# EOF

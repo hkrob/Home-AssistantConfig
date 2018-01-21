@@ -1,0 +1,106 @@
+# https://github.com/CiquattroFPV/Homeassistant-Example-Config/blob/master/group.yaml
+#
+# Example configuration.yaml entry https://home-assistant.io/components/group/
+### GROUPS ###
+
+## Default View ##
+#Television:
+#  - media_player.samsung_smart_tv
+#  - input_select.channel
+#  - script.playpause
+#  - script.record
+weathersensors:
+  - sensor.temperature_158d0001561c0a
+  - sensor.temperature_158d0001563369
+  - sensor.temperature_158d0001826d95
+  - sensor.air_purifier_humidity
+  - sensor.humidity_158d0001561c0a
+  - sensor.humidity_158d0001563369
+  - sensor.humidity_158d0001826d95
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_humidity
+  - sensor.dark_sky_precip_probability
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_wind_speed
+#
+internetspeed:
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+#
+weblinks:
+  - weblink.home_assistant
+  - weblink.router_ext
+  - weblink.router_lan
+
+staticImages:
+  - camera.static_kitchen1
+  - camera.static_kitchen2
+  - camera.static_Water
+  - camera.living_room_hd
+
+batteryLevels:
+  - sensor.outsideweather_sensor_battery
+  - sensor.bedroomweather_sensor_battery
+  - sensor.livingroomweather_sensor_battery
+  - sensor.frontdooropenclose_sensor_battery
+  - sensor.kitchenmotion_sensor_battery
+  - sensor.livingroommotion_sensor_battery
+  - sensor.frontdoorswitch_sensor_battery
+  - sensor.kitchenswitch_sensor_battery
+  - sensor.bedroomswitch_sensor_battery
+  - sensor.bathroomswitch_sensor_battery
+  - sensor.bedswitch_sensor_battery
+  - sensor.sofaswitch_sensor_battery
+
+airPurifierLroom:
+  - sensor.purifier_motor_speed
+  - sensor.purifier_mode
+  - sensor.purifier_humidity
+  - sensor.purifier_temperature
+  - sensor.purifier_aqi
+  #- sensor.airPurifierLroom_filterLifeRemaining
+  - sensor.purifier_filterHoursUsed
+  - sensor.purifier_favouriteLevel
+  - sensor.purifier_led
+  - fan.living_room_air_purifier
+### VIEWS ##
+#default_view:
+#  name: DEFAULT
+#  icon: mdi:home
+#  view: yes
+#  entities:
+#    - media_player.octopus
+#    - group.octopus
+#    - group.television
+Static:
+  name: Static Images
+  view: yes
+  entities:
+    - group.staticImages
+Internet:
+  name: Internet
+  view: yes
+  entities:
+    - group.weblinks
+    - group.internetspeed
+Batteries:
+  name: Battery Levels
+  view: yes
+  entities:
+    - group.batteryLevels
+Weather:
+  name: Weather
+  view: yes
+  entities:
+    - group.weathersensors
+airPurifierLivingRoom:
+  name: Air Purifier Living Room
+  view: yes
+  entities:
+    - group.airPurifierLroom
+#
+#
+#
+# EOF

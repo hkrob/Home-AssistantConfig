@@ -1,0 +1,89 @@
+# https://github.com/Haynie-Research-and-Development/jarvis/blob/master/automations.yaml
+- id: kitchen_motion_sunset_midnight
+  alias: Kitchen Motion after sunset until midnight
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00015b5bab
+      from: 'off'
+      to: 'on'
+      for:
+        seconds: 1
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.kitchen1
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: sun
+        after: sunset
+      - condition: time
+        before: '23:59:59'
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen1
+      data:
+        brightness_pct: 50 #0-100
+        kelvin: 2500
+#
+- id: kitchen_motion_midnight_sunrise
+  alias: Kitchen Motion after midnight until sunrise
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00015b5bab
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.kitchen1
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+      - condition: sun
+        before: sunrise
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen1
+      data:
+        brightness_pct: 5 #0-100
+        kelvin: 2500
+#
+#
+- alias: Kitchen No Motion 2 minutes 24hr
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015b5bab
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 2
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.enable_motion
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.automation
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen1
+##
+#
+# EOF

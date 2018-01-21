@@ -1,0 +1,104 @@
+#
+sensor.humidity_158d0001563369:
+  friendly_name: Outside Humidity
+  icon_template: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.temperature_158d0001563369:
+  friendly_name: Outside Temperature
+  unit_of_measurement: '°C'
+  icon_template: mdi:thermometer
+#
+sensor.humidity_158d0001826d95:
+  friendly_name: Bedroom Humidity
+  icon_template: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.temperature_158d0001826d95:
+  friendly_name: Bedroom Temperature
+  unit_of_measurement: '°C'
+  icon_template: mdi:thermometer
+#
+sensor.humidity_158d0001561c0a:
+  friendly_name: Living Room Humidity
+  icon_template: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.temperature_158d0001561c0a:
+  friendly_name: Living Room Temperature
+  unit_of_measurement: '°C'
+  icon_template: mdi:thermometer
+#
+binary_sensor.door_window_sensor_158d0001193d64:
+  friendly_name: Front Door
+  entity_picture: http://www.ourhomefromscratch.com/wp-content/uploads/2012/08/front-door-finished-1.jpg
+#
+#
+# motion sensors
+binary_sensor.motion_sensor_158d00015b5bab:
+  friendly_name: KitchenMotion
+  device_class: motion
+#
+# buttons
+#
+binary_sensor.switch_158d00016bdbc5:
+  friendly_name: Sofa
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+binary_sensor.switch_158d0001256414:
+  friendly_name: Front Door
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+binary_sensor.switch_158d00013ecdbf:
+  friendly_name: Kitchen
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+binary_sensor.switch_158d00016bdb80:
+  friendly_name: Bathroom
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+binary_sensor.switch_158d00013ecde4:
+  friendly_name: Bedroom
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+binary_sensor.switch_158d00016bdbdd:
+  friendly_name: Bed
+  entity_picture: http://image3.geekbuying.com/ggo_pic/2015-11-06/20151106154721s1vab4i.jpg
+#
+#
+# lights
+light.bedroom:
+  friendly_name: Bedroom
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Bedroom Light  
+light.bathroom1:
+  friendly_name: Bathroom One
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Bathroom Light One
+light.bathroom2:
+  friendly_name: Bathroom Two
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Bathroom Light Two
+light.kitchen1:
+  friendly_name: Kitchen RGB One
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Kitchen Light One
+light.kitchen2:
+  friendly_name: Kitchen RGB Two
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Kitchen Light Two  
+light.front_door:
+  friendly_name: Front Door
+  entity_picture: https://gloimg.gearbest.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1487046274492144026.jpg
+  google_assistant: true
+  google_assistant_name: Front Door Light
+light.gateway_light_286c07fa30e3:
+  friendly_name: Gateway
+  entity_picture: https://xiaomi-mi.com/uploads/ck/xiaomi-mi-gateway-2-001.jpg
+  google_assistant: true
+  google_assistant_name: Gateway Light
+light.living_room_lamp:
+  friendly_name: Living Room
+  entity_picture: https://www.pickaboo.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi_mijia_smart_led_desk_lamp_-_white_2.jpg
+  google_assistant: true
+  google_assistant_name: Living Room Lamp  
+#
+# EOF
+  

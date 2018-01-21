@@ -1,0 +1,3 @@
+binary_sensor.smoke_sensor_158d0001d94b5d:
+  friendly_name: SmokeSensor_Kitchen
+  homebridge_name: SmokeSensor_Kitchen
